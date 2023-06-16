@@ -46,6 +46,16 @@ export default {
     setSelectedTab(tab) {
       this.selectedTab = tab;
     },
+    addResource(title,description,url){
+      const newResource = {
+        id: new Date().toISOString,
+        title,
+        description,
+        url,
+      }
+      this.StoredResources.unshift(newResource),
+      this.selectedTab = 'stored-resources'
+    }
   },
   computed: {
     storedResButtonMode() {
@@ -54,10 +64,12 @@ export default {
     addResButtonMode() {
       return this.selectedTab === "add-resource" ? null : "flat";
     },
+
   },
   provide() {
     return {
       resources: this.StoredResources,
+      addResource: this.addResource,
     };
   },
 };
