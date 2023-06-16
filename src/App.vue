@@ -1,12 +1,15 @@
 <template>
+  <the-header title="RembemberMe"></the-header>
   <stored-resources :resources="storedResources"></stored-resources>
 </template>
 
 <script>
-import StoredResources from './components/learning-recources/StoredResources.vue';
+import StoredResources from "./components/learning-recources/StoredResources.vue";
+import TheHeader from "./components/layots/TheHeader.vue";
 export default {
   components: {
     StoredResources,
+    TheHeader,
   },
   data() {
     return {
@@ -29,17 +32,16 @@ export default {
 };
 </script>
 
-
 <style>
-*{
+* {
   box-sizing: border-box;
 }
+
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
-  margin: px;
+  margin: 0;
 }
 </style>
- 
