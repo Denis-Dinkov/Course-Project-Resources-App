@@ -1,24 +1,16 @@
 <template>
-  <ul>
-    <learning-resource
-      v-for="item in storedResuources"
-      :key="item.id"
-      :title="item.title"
-      :description="item.description"
-      :link="item.link"
-    > </learning-resource>
-  </ul>
+  <stored-resources :resources="storedResources"></stored-resources>
 </template>
 
 <script>
-import LearningResource from "./components/learning-recources/LearningResource.vue";
+import StoredResources from './components/learning-recources/StoredResources.vue';
 export default {
   components: {
-    LearningResource,
+    StoredResources,
   },
   data() {
     return {
-      storedResuources: [
+      storedResources: [
         {
           id: "official-guide",
           title: "Official  Guide",
@@ -36,3 +28,18 @@ export default {
   },
 };
 </script>
+
+
+<style>
+*{
+  box-sizing: border-box;
+}
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: px;
+}
+</style>
+ 
