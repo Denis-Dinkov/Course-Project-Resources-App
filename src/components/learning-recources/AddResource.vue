@@ -1,10 +1,19 @@
 <template>
+  <base-dialog v-if="inputIsInValid" title="Invalid Input" @close="confirmError ">
+    <template #default>
+      <p>Invalid input</p>
+      <p>Check all inputs</p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+  </base-dialog>
   <base-card>
     <form @submit.prevent="submitData">
       <div class="form-control">
         <label for="title">Title</label>
         <input id="title" type="text" name="title" ref="titleValue" />
-      </div>
+      </div> 
       <div class="form-control">
         <label for="description">Description</label>
         <textarea
@@ -29,12 +38,30 @@
 <script>
 export default {
   inject: ["addResource"],
+  data() {
+    return {
+      inputIsInValid: false,
+    };
+  },
   methods: {
     submitData() {
       const enteredTitle = this.$refs.titleValue.value;
       const enteredDescription = this.$refs.descriptionValue.value;
       const linkValue = this.$refs.linkValue.value;
+
+      if (
+        enteredTitle.trim() === "" ||
+        enteredDescription.trim() === "" ||
+        linkValue === ""
+      ) {
+        this.inputIsInValid = true;
+        return
+      }
+
       this.addResource(enteredTitle, enteredDescription, linkValue);
+    },
+    confirmError() {
+      this.inputIsInValid = false;
     },
   },
 };
