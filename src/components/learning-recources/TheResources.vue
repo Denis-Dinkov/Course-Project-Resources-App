@@ -58,6 +58,10 @@ export default {
       this.StoredResources.unshift(newResource),
         (this.selectedTab = "stored-resources");
     },
+    removeResource(id){
+      const resIndex = this.StoredResources.findIndex(res => res.id !== id);
+      this.StoredResources.splice(resIndex, 1)  
+    }
   },
   computed: {
     storedResButtonMode() {
@@ -71,6 +75,7 @@ export default {
     return {
       resources: this.StoredResources,
       addResource: this.addResource,
+      deleteResource: this.removeResource
     };
   },
 };
